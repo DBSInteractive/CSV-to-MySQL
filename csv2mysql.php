@@ -4,7 +4,7 @@
 *
 * @package library/misc
 *
-* @abstract A quick and dirty means of creating a mysql table from a csv file. 
+* A quick and dirty means of creating a mysql table from a csv file. 
 * A header row is required for the csv, and can be optionally used to create the 
 * table column names. 
 *
@@ -43,20 +43,22 @@ ini_set( 'memory_limit','512M' );
 set_time_limit( 0 );
 error_reporting ( E_ALL );
 
+new csv2mysl();
+
 /**
 * @class csv2mysql
 */
 class csv2mysql
 {
 
-	protected $csv			= null;		// csv file name, *required*
+	protected $csv			= null;		// csv file name, **required**
 	protected $db			= null;		// database name, will be named from the csv if is_null.
 	protected $table_name		= null;		// table name, will be named from the csv if is_null.
 	protected $db_host		= 'localhost';
 	protected $db_user		= 'root';
 	protected $db_password		= '';
 
-	public    $autoexec			= false;	// run from constructor
+	public    $autoexec			= true;	// run from constructor
 	protected $debug			= true;
 	protected $create			= true;	// dynamically create table structure from csv header or not. TODO: not tested if this is FALSE :/
 	protected $insert_ignore		= false;	// INSERT IGNORE syntax for possible duplicate keys
