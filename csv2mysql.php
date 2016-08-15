@@ -8,11 +8,12 @@
 * A header row is required for the csv, and can be optionally used to create the 
 * table column names. 
 *
-* @example: invoke from a shell prompt, eg: $php csv2mysql.php
+* @example: invoke from a shell prompt, eg: $php csv2mysql.php [my.csv]
 *
 * Configuration: 
 * 
-* All variables can be set in script explicity or better, by extending.
+* All variables can be set in script explicity or better, by extending. A csv file to
+* be processed can be passed on the command line.
 *
 * NOTE: The csv is assumed to come from a trusted source.
 *
@@ -77,6 +78,11 @@ class csv2mysql
 	*/
 	function __construct() 
 	{
+		global $argv;
+		if ( $argv[1] ) {
+			$this->csv = $argv[1];
+		}
+
 		if ( $this->autoexec ) {
 			$this->exec();
 		}
